@@ -9,12 +9,16 @@ import java.util.regex.Pattern;
 public class StringUtil {
 	private static final Pattern WORDS_PATTERN = Pattern.compile("&.*?;|<.*?>|(\\w[\\w-]*)");
 	private static final Pattern TAGS_PATTERN = Pattern.compile("<(/)?([^ ]+?)(?: | .*?)?(/)?>");
+	private static final List<String> html4Singlets = Arrays.asList("br", "col", "link", "base", "img", "param", "area", "hr", "input");;
 
 	public static String truncateHtmlWords(String html, int length) {
-		if (length <= 0)
-			return new String();
+		return truncateHtmlWords(html, length, "&nbsp;...");
+	}
 
-		List<String> html4Singlets = Arrays.asList("br", "col", "link", "base", "img", "param", "area", "hr", "input");
+	public static String truncateHtmlWords(String html, int length, String end) {
+		if (length <= 0)
+			return end;
+
 		Matcher mWords = WORDS_PATTERN.matcher(html);
 		// Count non-HTML words and keep note of open tags
 		int endTextPos = 0;
@@ -59,7 +63,7 @@ public class StringUtil {
 
 		if (curLength <= length)
 			return html;
-		StringBuilder out = new StringBuilder(html.substring(0, endTextPos));
+		StringBuilder out = new StringBuilder(html.substring(0, endTextPos)).append(end);
 		for (String tag : openTags)
 			out.append("</" + tag + ">");
 
