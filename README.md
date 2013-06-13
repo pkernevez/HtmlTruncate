@@ -18,11 +18,11 @@ This code has been inspired by this implementation : http://blog.dentcat.com/201
 ---
 __Example 1 :__
 
-Assert.assertEquals("Simple&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 5) // End of first word, add "&nbsp;..."
-Assert.assertEquals("Simple&nbsp;&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 6) // Html encoded chars count for a single char
-Assert.assertEquals("Simple&nbsp;&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 7) // Not enought chars to take the seconf word
-Assert.assertEquals("Simple&nbsp;example", StringUtil.truncateHtmlWords("Simple&nbsp;example", 14) // Full texte
+    Assert.assertEquals("Simple&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 5) // End of first word, add "&nbsp;..."
+    Assert.assertEquals("Simple&nbsp;&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 6) // Html encoded chars count for a single char
+    Assert.assertEquals("Simple&nbsp;&nbsp;...", StringUtil.truncateHtmlWords("Simple&nbsp;example", 7) // Not enought chars to take the seconf word
+    Assert.assertEquals("Simple&nbsp;example", StringUtil.truncateHtmlWords("Simple&nbsp;example", 14) // Full texte
 
 __Example 2 :__
-Assert.assertEquals("texte <a href="link">End</a>", StringUtil.truncateHtmlWords("texte <a href="link">other text</a>", 8, "End") // Full texte
-Assert.assertEquals("texte <a href="link">otherEnd</a>", StringUtil.truncateHtmlWords("texte <a href="link">other text</a>", 10, "End") // Full texte
+    Assert.assertEquals("texte <a href="link">End</a>", StringUtil.truncateHtmlWords("texte <a href="link">other text</a>", 8, "End") // Full texte
+    Assert.assertEquals("texte <a href="link">otherEnd</a>", StringUtil.truncateHtmlWords("texte <a href="link">other text</a>", 10, "End") // Full texte
