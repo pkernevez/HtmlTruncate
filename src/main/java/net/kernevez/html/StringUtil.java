@@ -6,10 +6,25 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Copyright (c)2013, Philippe Kernevez. All rights reserved.
+ * 
+ * <pre>
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ * </pre>
+ */
 public class StringUtil {
 	private static final Pattern WORDS_PATTERN = Pattern.compile("&.*?;|<.*?>|(\\w[\\w-]*)");
 	private static final Pattern TAGS_PATTERN = Pattern.compile("<(/)?([^ ]+?)(?: | .*?)?(/)?>");
-	private static final List<String> html4Singlets = Arrays.asList("br", "col", "link", "base", "img", "param", "area", "hr", "input");;
+	private static final List<String> HTML_FOR_SINGLETS = Arrays.asList("br", "col", "link", "base", "img", "param", "area", "hr", "input");
 
 	public static String truncateHtmlWords(String html, int length) {
 		return truncateHtmlWords(html, length, "&nbsp;...");
@@ -53,7 +68,7 @@ public class StringUtil {
 							openTags = openTags.subList(i + 1, openTags.size());
 						endTextPos = mWords.end();
 
-					} else if (selfClosing == null && !html4Singlets.contains(tagName)) {
+					} else if (selfClosing == null && !HTML_FOR_SINGLETS.contains(tagName)) {
 						openTags.add(0, tagName);
 						endTextPos = mWords.end();
 					}
